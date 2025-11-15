@@ -67,6 +67,7 @@ struct AddPhotoSheet: View {
         }
     }
 
+    @MainActor
     private func processPhotos() async {
         isProcessing = true
 

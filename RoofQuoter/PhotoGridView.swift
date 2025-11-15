@@ -41,13 +41,6 @@ struct PhotoGridView: View {
                                     .onTapGesture {
                                         selectedPhoto = photo
                                     }
-                                    .contextMenu {
-                                        Button(role: .destructive) {
-                                            deletePhoto(photo)
-                                        } label: {
-                                            Label("Delete", systemImage: "trash")
-                                        }
-                                    }
                             }
                         }
                         .padding()

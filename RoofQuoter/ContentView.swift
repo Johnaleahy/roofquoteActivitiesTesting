@@ -9,6 +9,27 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    var body: some View {
+        TabView {
+            ActivityListView()
+                .tabItem {
+                    Label("Activities", systemImage: "figure.run")
+                }
+
+            PhotoGridView()
+                .tabItem {
+                    Label("Roof Details", systemImage: "house.fill")
+                }
+
+            MeasurementListView()
+                .tabItem {
+                    Label("Measurements", systemImage: "ruler")
+                }
+        }
+    }
+}
+
+struct ItemsListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
 
@@ -62,5 +83,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: [Item.self, PhotoItem.self, Measurement.self, ActivityType.self, ActivityLog.self, ActivityGoal.self], inMemory: true)
 }

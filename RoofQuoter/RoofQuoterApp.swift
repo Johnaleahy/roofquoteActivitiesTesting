@@ -13,6 +13,11 @@ struct RoofQuoterApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
+            PhotoItem.self,
+            Measurement.self,
+            ActivityType.self,
+            ActivityLog.self,
+            ActivityGoal.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -22,6 +27,12 @@ struct RoofQuoterApp: App {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
+
+    init() {
+        // Seed default activity types on first launch
+        let modelContext = ModelContext(sharedModelContainer)
+        ActivityDataSeeder.seedDefaultActivityTypes(in: modelContext)
+    }
 
     var body: some Scene {
         WindowGroup {
